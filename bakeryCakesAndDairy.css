@@ -1,0 +1,40 @@
+#mainContent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-content: space-around;
+}
+img {
+    width: 100%;
+}
+#mainContent > div {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+#mainContent > p:first-child {
+    text-decoration: line-through;
+}
+#container {
+    margin: auto;
+    padding: 0 170px 0 170px;
+}
+#parent {
+    display: grid;
+    grid-template-columns: 200px auto;
+    column-gap: 10px;
+    grid-column-start: 1;
+}
+#categoryDescription, #parent, #leftContent {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 15px;
+}
+#priceDiv {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#ratingDiv {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
