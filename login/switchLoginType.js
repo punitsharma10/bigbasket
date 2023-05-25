@@ -1,20 +1,3 @@
-const loginButton = document.getElementById("loginButton");
-const loginPopup = document.getElementById("loginPopup");
-const overlay = document.getElementById("overlay");
-const loginForm = document.getElementById("loginForm");
-loginButton.addEventListener("click", loginpop);
-
-function loginpop() {
-  {
-    loginPopup.style.display = "block";
-    overlay.style.display = "block";
-  }
-}
-overlay.addEventListener("click", function () {
-  loginPopup.style.display = "none";
-  overlay.style.display = "none";
-});
-
 const LoginEmail = document.getElementById("LoginEmail");
 var UserID = document.getElementById("userID");
 
