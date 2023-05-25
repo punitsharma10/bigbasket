@@ -686,6 +686,8 @@ var bakeryCakesAndDairy = [
 
     
 ]
+
+// var childCategory = bakeryCakesAndDairy.forEach().filter()
 var currentProduct = JSON.parse(localStorage.getItem("showProduct"));
 console.log(currentProduct);
 displayProduct(currentProduct);
@@ -708,10 +710,11 @@ function displayProduct(product) {
     name.textContent = product.name;
 
     var originalPrice = document.createElement("p");
-    originalPrice.textContent = "₹ " + product.originalPrice;
+    originalPrice.setAttribute("id", "originalPrice");
+    originalPrice.textContent = "MRP: ₹ " + product.originalPrice;
 
     var offerPrice = document.createElement("p");
-    offerPrice.textContent = "₹ " + product.offerPrice;
+    offerPrice.textContent = "PRICE: ₹ " + product.offerPrice;
 
     var priceDetails = document.createElement("p");
     priceDetails.textContent = "(Inclusive of all taxes)";
@@ -735,7 +738,12 @@ function displayProduct(product) {
 
     div.append(brandName, name, originalPrice, offerPrice, priceDetails, ratingDiv, button, deliveryInformation);
 
+    var descriptionName = document.createElement("h3");
+    descriptionName.textContent = product.name;
+    
+    
     document.getElementById("content").append(div);
+    document.getElementById("productDescription").append(descriptionName);
 }
 
 // var leftBar = document.getElementById("leftContent");

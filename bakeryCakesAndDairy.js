@@ -687,8 +687,6 @@
                                
     ]
 
-    // document.getElementById("mainContentHeading").textContent = "Bakery, Cakes And Dairy" + "(" + bakeryCakesAndDairy.length + ")"
-
 displayProductsCatalogue();
 
 function displayProductsCatalogue() {
@@ -708,7 +706,6 @@ function displayProductsCatalogue() {
         var productDiv = document.createElement("div");
         productDiv.setAttribute("class", "productDiv");
         productDiv.append(image, brandName, name);
-        // var productToShow = product.brandName;
         productDiv.addEventListener("click", function() {
             redirectToProductPage(product);
         })
@@ -728,6 +725,7 @@ function displayProductsCatalogue() {
         offerPrice.textContent = "₹ " + product.offerPrice;
 
         var originalPrice = document.createElement("p");
+        originalPrice.setAttribute("class", "originalPrice");
         originalPrice.textContent = "₹ " + product.originalPrice;
 
         var button = document.createElement("button");
@@ -747,26 +745,14 @@ function displayProductsCatalogue() {
 }
 
 function redirectToProductPage(product) {
-    localStorage.setItem("showProduct", JSON.stringify(product));
+    localStorage.setItem("myBasket", JSON.stringify(product));
     window.open("product_vamsi.html");
 }
 
-var cartArray = [];
-
+var cartArray = JSON.parse(localStorage.getItem("myBasket")) || [];
 function addToCart(product) {
-    
-
-    var currentItem = product.name;
-    if(cartArray.includes(currentItem)) {
-        var count = localStorage.getItem(product.name);
-        localStorage.setItem(product.name, count++);
-    }
-    else {
-        localStorage.setItem(product.name, 0);
-        cartArray.push(currentItem)
-    }
-console.log(cartArray)
-
-
-    localStorage.setItem(product.name, );
+    cartArray.push(product);
+    localStorage.setItem("myBasket", JSON.stringify(cartArray));
 }
+
+console.log(cartArray);
