@@ -167,7 +167,7 @@ myBask(bestSellers , bs)
 var basket_arr = []
 function setlocal(e) {
     basket_arr.push(e)
-    // console.log(basket_arr);
+    console.log(basket_arr);
     localStorage.setItem("myBasket" , JSON.stringify(basket_arr))
     
 }
