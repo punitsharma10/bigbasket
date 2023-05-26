@@ -69,7 +69,7 @@ function storeDetails(newUser) {
   event.preventDefault();
   newUser.Name = document.getElementById("UserName").value;
   newUser.Address = document.getElementById("UserAddress").value;
-  newUser.Number = document.getElementById("UserNumber").value;
+  newUser.Email = document.getElementById("UserEmail").value;
   DetailsPopup.style.display = "none";
   document.getElementById("loginButton").innerText = newUser.Name;
 
