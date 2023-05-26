@@ -29,7 +29,7 @@
     margin: 10px;
   }
   .popup-content>h2{
-    color: #84c225;
+    color: #a5cd39 ;
     
   }
   .popup-content>form>*{
@@ -52,10 +52,19 @@
 
   form button:nth-child(3) {
     color: #fff;
-    background-color: #84c225!important;
+    background-color: #a5cd39 !important;
     border: none;
   }
   #loginButton {
     margin: 20px;
   }
-  
+  .Details-bottom-border-input{
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    width: 100%;
+    margin: 80px 20px 80px 10px
+  }
+  #DetailsForm button{
+    background-color: #a5cd39 ;
+  }

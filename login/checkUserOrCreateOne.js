@@ -3,6 +3,10 @@ localStorage.setItem("otp","88888")
 function checkUserExists(userInput) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const existingUser = users.find(user => user. userId == userInput );
+    console.log(existingUser.userDetails.Name)
+    if(existingUser){
+      const UserName = existingUser.userDetails.Name
+    }
     return existingUser;
   }
   
@@ -23,7 +27,8 @@ function checkUserExists(userInput) {
 
     const existingUser = checkUserExists(userInput);
     if (existingUser) {
-      document.getElementById("loginButton").innerText=existingUser.Name
+      console.log(existingUser.userDetails.Name)
+      document.getElementById("loginButton").innerText=existingUser.userDetails.Name
     } else {
       const newUser = {
         email: '',
@@ -31,25 +36,13 @@ function checkUserExists(userInput) {
         Name: "",
         Address: '', 
       };
-       const User={
-        userId : userInput,
-        userDetails : newUser
-       };
-
        VerificationPage.style.display = "none";
        const DetailsPopup = document.getElementById("DetailsPopup");
        DetailsPopup.style.display = "block";
-      if (userInput.includes('@')) {
-        newUser.email = userInput;
-      } else {
-        newUser.number = userInput;
-      }
-  
-      const users = JSON.parse(localStorage.getItem('users')) || [];
-      users.push(User);
-      localStorage.setItem('users', JSON.stringify(users));
-  
-      console.log('Account created successfully!');
+        document.querySelector("#DetailsForm").addEventListener("submit",function(){
+        storeDetails(newUser)
+       })
+      
     }
   }
  var userInput="";
@@ -69,3 +62,27 @@ function checkUserExists(userInput) {
 
   document.getElementById('submitButton').addEventListener('click', onSubmitButtonClicked);
   
+function storeDetails(newUser){
+  event.preventDefault();
+newUser.Name=document.getElementById("UserName").value;
+newUser.Address=document.getElementById("UserAddress").value;
+newUser.Number=document.getElementById("UserNumber").value;
+DetailsPopup.style.display = "none";
+document.getElementById("loginButton").innerText=newUser.Name
+
+
+if (userInput.includes('@')) {
+  newUser.email = userInput;
+} else {
+  newUser.number = userInput;
+}
+
+ const User={
+  userId : userInput,
+  userDetails : newUser
+ };
+const users = JSON.parse(localStorage.getItem('users')) || [];
+users.push(User);
+localStorage.setItem('users', JSON.stringify(users));
+console.log('Account created successfully!');
+}
