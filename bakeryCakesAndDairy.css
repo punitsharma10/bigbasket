@@ -1,17 +1,61 @@
+* {
+    font-family: 'proxima_nova_rgbold', Helvetica, Arial, sans-serif;
+    color: #222222;
+    font-size: 13px;
+    font-weight: 400;
+}
+
 #mainContent {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 10px;
     justify-content: space-around;
 }
 img {
     width: 100%;
 }
+
+#categoryInfo {
+    display: grid;
+    /* grid-template-columns: ; */
+    /* width: 70px; */
+}
+
+#sortFilter {
+    align-content: end;
+    
+    /* justify-content:flex-end; */
+}
+
+#sortByType {
+    width: 140px;
+    height: 20px;
+    float: right;
+    border: 1px solid #E0E0E0; 
+    color: #6D6E71; 
+    text-shadow: #fff 1px 1px ;
+}
+#topContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+}
+
+#rightContainer {
+    display: grid;
+}
+#topContainer h3 {
+    font: 'Roboto Slab,serif';
+    color: #58595b;
+    font-size: 20px;
+}
 #mainContent > div {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border-radius: 10px;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+    /* border-radius: 10px; */
     padding: 10px;
-    text-align: center;
+    border-left: 1px solid gray;
+    /* border-bottom: 1px solid gray; */
+    /* text-align: center; */
 }
 #mainContent > p:first-child {
     text-decoration: line-through;
@@ -30,16 +74,119 @@ img {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     padding: 15px;
 }
+
+#brandName {
+    color: #999;
+    font-size: 13px;
+}
+
+#productName {
+    font-size: 13px;
+    margin: -4px 0 -4px 0;
+}
+
+#rating {
+    font-size: 11px;
+    color: #4a4a4a;
+    background-color: rgb(227, 235, 218);
+    color: #689f38;
+    text-align: center;
+    font-weight: bold;
+}
+
+#totalRatings {
+    font-size: 11px;
+    color: #4a4a4a;
+    font-weight: normal;
+}
+
+#offerPrice {
+    color: #666;
+    font-size: 13px;
+    text-align: center;
+}
+
+#quantity {
+    font-size: 13px;
+    width: 30px;
+    height: 21px;
+    margin-right: 10px;
+}
+
+#qty {
+    display: grid;
+    height: 26px;
+    text-align: center;
+    width: 30px;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    align-content: center;
+}
+#qtyDiv {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    column-gap: 0;
+    
+    border-radius: 5px;
+    /* box-sizing: content-box; */
+}
+
+#addToBasket {
+    background-color:  #F4F3F2;
+    padding-left: 5px;
+    padding-right: 5px;
+    /* height: 100px; */
+}
+#qtyAddDiv {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    /* border: 1px solid green; */
+    margin-top: -10px;
+    height: 50px;
+    /* width: auto;
+    height: min-content; */
+    /* margin: -4px 0 -5px 0; */
+}
+#button {
+    background-color: #f2cb76;
+    border: none;
+    border-radius: 5px;
+    width: 49px;
+    height: 26px;
+}
+
+#quantity {
+    height: 21px;
+    width: 30px;
+}
 #priceDiv {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    align-content:center;
+    justify-content: center;
+    /* border: 1px solid red; */
+    height: 25px;
+}
+#MRPDiv {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: -5px;
+    /* column-gap: 2px; */
+    /* padding-left: 2px; */
+    /* padding-right: 5px; */
 }
 #ratingDiv {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 40px auto;
+    justify-content: left;
+    column-gap: 5px;
 }
 .originalPrice {
     text-decoration: line-through;
+    color: #666;
+    font-size: 13px;
 }
 footer{
     display: flex;

@@ -1,0 +1,185 @@
+* {
+    font-family: 'proxima_nova_rgbold', Helvetica, Arial, sans-serif;
+    color: #222222;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+#productDescription {
+    display: grid;
+    grid-template-columns: 250px auto;
+    /* border: 1px solid blue; */
+}
+
+
+#mainContent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* border: 1px solid yellow; */
+}
+
+#leftContent > h4 {
+    font-size: 16px;
+}
+
+#leftContent > li {
+    font-size: 14px;
+}
+#image {
+    object-fit: contain;
+    width: auto;
+}
+
+#brandName {
+    font-size: 13px;
+    font-family: ProximaNova-Semibold;
+    /* border-bottom: 1px solid #666; */
+    text-decoration: underline;
+}
+
+#name {
+    font-size: 18px;
+}
+
+#originalPrice {
+    font-size: 13px;
+    text-decoration: line-through;
+}
+
+#offerPrice {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#savings {
+    font-size: 13px;
+    color: #ba5252;
+}
+
+#taxIncluded {
+    font-size: 13px;
+    color: #8f8f8f;
+}
+
+#ratingDiv {
+    display: grid;
+    grid-template-columns: 40px auto;
+    justify-content:flex-start;
+    color: rgb(74, 74, 74);
+}
+
+#ratingDiv > p {
+    font-size: 14px;
+}
+
+#totalRatings {
+    /* border: 1px solid purple; */
+}
+#quantity {
+    font-size: 13px;
+    width: 40px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+
+#addToCartButton {
+    font-size: 13px;
+    background-color: #84c225;
+    border-radius: 4px;
+    /* padding-left: 5px; */
+    padding: 11px 30px;
+    font-size: 15px;
+    color: white;
+    box-sizing:border-box;
+    border: none;
+}
+
+#deliveryInformation {
+    font-size: 13px;
+    color: #979797;
+}
+
+#productName {
+    font-size: 25px;
+}
+
+#container, #aboutProduct {
+    padding: 0 150px 0 150px;
+}
+
+#productImage {
+    /* border: 1px solid green; */
+    
+    padding: 5px;
+    
+    
+    
+    
+}
+
+#productImage > img {
+    /* object-fit:contain;
+    
+    box-sizing: border-box;
+    overflow-clip-margin: content-box;  */
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    /* width: 90%; */
+}
+
+#productDetails {
+    /* border: 1px solid red;    */
+    padding: 5px;
+}
+
+#accordion {
+    /* border: 1px solid blue; */
+    padding: 5px;
+    margin: 5px;
+}
+#dropdownAccordion {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+footer{
+    display: flex;
+}
+footer > div > div >h4{
+    padding-left: 40px;
+    color: #84c225;
+}
+.content{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    width: 70%;
+    margin: auto;
+}
+
+li{
+    text-decoration: none;
+    list-style: none;
+    padding: 5px 0px;
+}
+li>a{
+    text-decoration: none;
+    list-style: none;
+    color: black;
+}
+.logo{
+    display: flex;
+    align-items: start;
+    width: 67%;
+    /* justify-content:; */
+}
+.logo>div+div>h4{
+    margin: 23px 166px;
+}
+.social>img{
+    width: 8%;
+}
+.social{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

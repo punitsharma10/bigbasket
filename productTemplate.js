@@ -670,21 +670,7 @@ var bakeryCakesAndDairy = [
      parentCategory: "Bakery, Cakes & Dairy",
      childCategory: "Dairy",
      subCategory: "Flavoured, Soya Milk",
-    },
- //    {
- //     image_url: "",
- //     brandName: "",
- //     name: "",
- //     rating: 4.1,
- //     totalRatings: 6001,
- //     originalPrice: 150,
- //     offerPrice: 127,
- //     parentCategory: "Bakery, Cakes & Dairy",
- //     childCategory: "Dairy",
- //     subCategory: "",
- //    },
-
-    
+    }, 
 ]
 
 
@@ -693,72 +679,66 @@ console.log(currentProduct);
 displayProduct(currentProduct);
 
 function displayProduct(product) {
-    var div = document.createElement("div");
-    // div.setAttribute("class", "productImage");
-    
+
+    //Adding image in product page
     var image = document.createElement("img");
-    image.setAttribute("src", "https://www.bigbasket.com/media/uploads/p/l/100285703_15-nandini-goodlife-toned-milk.jpg");
-    // image.setAttribute("src", product.image_url);
-    image.setAttribute("alt", product.name);
+    image.setAttribute("src", "https://www.bigbasket.com/media/uploads/p/l/40037475_12-fresho-signature-cinnamon-sticks.jpg");
 
-    document.getElementById("image").append(image);
+    document.getElementById("productImage").append(image);
 
+    //Adding product details in product page
     var brandName = document.createElement("p");
+    brandName.setAttribute("id", "brandName")
     brandName.textContent = product.brandName;
 
     var name = document.createElement("p");
+    name.setAttribute("id", "name")
     name.textContent = product.name;
-
+    
     var originalPrice = document.createElement("p");
-    originalPrice.setAttribute("id", "originalPrice");
-    originalPrice.textContent = "MRP: ₹ " + product.originalPrice;
+    originalPrice.setAttribute("id", "originalPrice")
+    originalPrice.textContent = product.originalPrice;
 
     var offerPrice = document.createElement("p");
-    offerPrice.textContent = "PRICE: ₹ " + product.offerPrice;
+    offerPrice.setAttribute("id", "offerPrice")
+    offerPrice.textContent = "Price: " + product.offerPrice;
 
-    var priceDetails = document.createElement("p");
-    priceDetails.textContent = "(Inclusive of all taxes)";
+    var savings = document.createElement("p");
+    savings.setAttribute("id", "savings")
+    savings.textContent = "You Save: " + Math.round(((product.originalPrice - product.offerPrice) / product.originalPrice) * 100) + " %";
 
+    var taxIncluded = document.createElement("p");
+    taxIncluded.setAttribute("id", "taxIncluded")
+    taxIncluded.textContent = "(Inclusive of all taxes)";
+    
     var rating = document.createElement("p");
+    rating.setAttribute("id", "rating")
     rating.textContent = product.rating;
 
     var totalRatings = document.createElement("p");
-    totalRatings.textContent = product.totalRatings;
+    totalRatings.setAttribute("id", "totalRatings")
+    totalRatings.textContent = product.totalRatings + " Ratings & 18 Reviews";
 
     var ratingDiv = document.createElement("div");
-    ratingDiv.setAttribute("class", "ratingInProductPage")
-    ratingDiv.appendChild(rating);
-    ratingDiv.appendChild(totalRatings);
+    ratingDiv.setAttribute("id", "ratingDiv")
+    ratingDiv.append(rating, totalRatings);
 
-    var button = document.createElement("button");
-    button.textContent = "ADD TO BASKET";
-    
+    var quantity = document.createElement("INPUT");
+    quantity.setAttribute("id", "quantity");
+    quantity.setAttribute("type", "number");
+
+    var addToCartButton = document.createElement("button");
+    addToCartButton.setAttribute("id", "addToCartButton")
+    addToCartButton.textContent = "Add to basket";
+
     var deliveryInformation = document.createElement("p");
-    deliveryInformation.textContent = "Standard: Tomorrow Evening";
+    deliveryInformation.setAttribute("id", "deliveryInformation")
+    deliveryInformation.textContent = "Standard: Tomorrow Morning";
 
-    div.append(brandName, name, originalPrice, offerPrice, priceDetails, ratingDiv, button, deliveryInformation);
+    document.getElementById("productDetails").append(brandName, name, originalPrice, offerPrice, savings, taxIncluded, ratingDiv, quantity, addToCartButton, deliveryInformation);   
 
-    var descriptionName = document.createElement("h3");
-    descriptionName.textContent = product.name;
-    
-    
-    document.getElementById("content").append(div);
-    document.getElementById("productDescription").append(descriptionName);
+    var productName = document.createElement("h2");
+    productName.textContent = product.name;
+    productName.setAttribute("id", "productName")
+    document.getElementById("container").append(productName);   
 }
-
-// var leftBar = document.getElementById("leftContent");
-
-// var category = document.createElement("h6");
-// category.textContent = "category";
-
-// var parentCategory = document.createElement("h6");
-// parentCategory.textContent = 
-/*
-var output = []
-
-output = users.filter(function(element) {
-    return element.place == "Banglore";
-}).map(function(element, index, array) {
-    return element.firstName + " " + element.lastName
-});
-*/

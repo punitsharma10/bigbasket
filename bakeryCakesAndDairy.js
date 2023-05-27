@@ -687,21 +687,30 @@
                                
     ]
 
+var productCount = document.createElement("h3");
+productCount.textContent = "Bakery, Cakes & Dairy(" + bakeryCakesAndDairy.length + ")";
+// var categoryName = document.creat
+document.getElementById("categoryInfo").append(productCount);
+
 displayProductsCatalogue();
 
 function displayProductsCatalogue() {
     bakeryCakesAndDairy.map(function(product) {
+        
         var div = document.createElement("div");
 
         var image = document.createElement("img");
         image.setAttribute("src", product.image_url);
         image.setAttribute("alt", product.name);
+        image.setAttribute("id", "image");
 
         var brandName = document.createElement("p");
         brandName.textContent = product.brandName;
+        brandName.setAttribute("id", "brandName")
 
         var name = document.createElement("h6");
         name.textContent = product.name;
+        name.setAttribute("id", "productName");
 
         var productDiv = document.createElement("div");
         productDiv.setAttribute("class", "productDiv");
@@ -712,9 +721,11 @@ function displayProductsCatalogue() {
 
         var rating = document.createElement("p");
         rating.textContent = product.rating;
+        rating.setAttribute("id", "rating");
         
         var totalRatings = document.createElement("p");
         totalRatings.textContent = product.totalRatings + " Ratings";
+        totalRatings.setAttribute("id", "totalRatings");
 
         var ratingDiv = document.createElement("div");
         ratingDiv.setAttribute("id", "ratingDiv");
@@ -723,30 +734,77 @@ function displayProductsCatalogue() {
 
         var offerPrice = document.createElement("p");
         offerPrice.textContent = "₹ " + product.offerPrice;
+        offerPrice.setAttribute("id", "offerPrice");
 
         var originalPrice = document.createElement("p");
         originalPrice.setAttribute("class", "originalPrice");
         originalPrice.textContent = "₹ " + product.originalPrice;
 
+        
+
+        
+
+        
+        var addToBasket = document.createElement("div");
+        addToBasket.setAttribute("id", "addToBasket");
+        
+        var MRPDiv = document.createElement("div");
+        MRPDiv.setAttribute("id", "MRPDiv");
+
+        var MRP = document.createElement("p");
+        MRP.textContent = "MRP : "
+        var priceDiv = document.createElement("div");
+        priceDiv.setAttribute("id", "priceDiv");
+        MRPDiv.append(MRP, originalPrice);
+        priceDiv.append(MRPDiv, offerPrice);
+
+        
+
+        var qtyAddDiv = document.createElement("div");
+        qtyAddDiv.setAttribute("id", "qtyAddDiv")
+
+        var qtyDiv = document.createElement("div");
+        qtyDiv.setAttribute("id", "qtyDiv")
+
+        var qty = document.createElement("p");
+        qty.setAttribute("id", "qty");
+        addToBasket.append(priceDiv);
+        qty.textContent = "Qty";
+
+        var quantity = document.createElement("INPUT");
+        quantity.setAttribute("id", "quantity");
+        quantity.setAttribute("type", "number");
+
+        qtyDiv.appendChild(qty);
+        qtyDiv.appendChild(quantity);
+
+        var buttonDiv = document.createElement("div");
+        buttonDiv.setAttribute("id", "buttonDiv")
+
         var button = document.createElement("button");
-        button.textContent = "Add to cart";
+        button.textContent = "ADD";
+        button.setAttribute("id", "button");
         button.addEventListener("click", function() {
             addToCart(product);
         })
+        //
+        buttonDiv.appendChild(button);
 
-        var priceDiv = document.createElement("div");
-        priceDiv.setAttribute("id", "priceDiv");
-        priceDiv.appendChild(originalPrice);
-        priceDiv.appendChild(offerPrice);
+        qtyAddDiv.append(qtyDiv, buttonDiv)
+        qtyDiv.append(qty, quantity);
 
-        div.append(productDiv, ratingDiv, priceDiv, button);
+        addToBasket.append(priceDiv, qtyAddDiv)
+        div.append(productDiv, ratingDiv, addToBasket);
+
         document.getElementById("mainContent").append(div);
     });
 }
 
+
+
 function redirectToProductPage(product) {
-    localStorage.setItem("myBasket", JSON.stringify(product));
-    window.open("product_vamsi.html");
+    localStorage.setItem("showProduct", JSON.stringify(product));
+    window.open("productTemplate2.html");
 }
 
 var cartArray = JSON.parse(localStorage.getItem("myBasket")) || [];

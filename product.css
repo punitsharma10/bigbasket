@@ -1,3 +1,6 @@
+* {
+    font-family: 'proxima_nova_rgbold', Helvetica, Arial, sans-serif;
+}
 #container {
     padding: 0 100px 0 100px;
 }
@@ -37,9 +40,6 @@
 }
 #dropdownAccordion {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-}
-#productDescription {
-    /* border: 1px solid red; */
 }
 footer{
     display: flex;
