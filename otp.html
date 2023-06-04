@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>otp</title>
+    <style>
+        body
+        {
+            margin: 0;
+            width: 40%;
+            margin: auto;
+            text-align: center;
+            background-color: antiquewhite;
+        }
+        form
+        {
+            padding: 18px;
+        }
+        #btns:hover{
+            background-color: deepskyblue;
+        }
+        #otp:hover{
+            background-color: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter OMTP</h1>
+    <form onsubmit="validateOTP()">
+        <label for="otp">OTP:</label>
+        <input type="text" placeholder="Enter OTP" id="otp">
+        <br>
+        <br>
+        <input id="btns" type="submit">
+        </form>
+</body>
+</html>
+<script>
+    function validateOTP() {
+      var otp = document.getElementById("otp").value;
+      if (otp === "0000") 
+      {
+        alert("Payment Successful! - ORDER PLACED");
+        return true;
+      } 
+      else 
+      {
+        alert("Incorrect OTP.");
+        return false;
+      }
+    }
+  </script>
