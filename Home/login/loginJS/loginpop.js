@@ -8,7 +8,7 @@ loginButton.addEventListener("click", loginpop);
 var loggedIn = localStorage.getItem('loggedIn');
 
 function loginpop() {
-  {if(localStorage.getItem('loggedIn')===null){
+  {if(localStorage.getItem('loggedIn')=="false"){
     loginPopup.style.display = "block";
     overlay.style.display = "block";
   }
@@ -31,8 +31,8 @@ document.getElementById("submitButton").addEventListener("submit", function () {
 console.log(loggedIn);
 loginPlaceHolder.addEventListener('mouseover', function() {
   // Check if the user is logged in
- 
-  if (loggedIn===null) {
+  console.log(loggedIn);
+  if (loggedIn==null||loggedIn=="false") {
     
     dropdown.id = 'dropdownN';
   }

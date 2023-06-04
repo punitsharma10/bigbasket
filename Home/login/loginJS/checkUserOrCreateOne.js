@@ -31,7 +31,7 @@ function performLoginOrSignUp(userInput) {
   if (existingUser) {
     localStorage.setItem("UserName",existingUser.userDetails.Name) 
     
-      localStorage.setItem('loggedIn',true);
+      localStorage.setItem('loggedIn',"true");
       location.reload();
       
   } else {
@@ -81,6 +81,7 @@ function storeDetails(newUser) {
   newUser.Email = document.getElementById("UserEmail").value;
   DetailsPopup.style.display = "none";
   localStorage.setItem("UserName",newUser.Name) 
+  localStorage.setItem("loggedIn","true") 
   location.reload();
   const User = {
     userId: userInput,
