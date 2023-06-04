@@ -6,8 +6,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Big Basket</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
 </head>
 <body>
+        <!-- Navbox start -->
+  <div id="navbox">
+    <div id="topnav">
+      <p>
+        <span><i class="fa-solid fa-phone"></i></span> 1860 123 1000
+      </p>
+      <p>
+        <span><i class="fa-solid fa-location-dot"></i></span> 560004,
+        Bangalore <span><i class="fa-solid fa-angle-down"></i></span>
+      </p>
+      <div id="username">
+        <p id="show_name"></p>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">
+          BigBasketeer<i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#">My Account</a>
+          <a href="#">My Basket</a>
+          <a href="#">My Orders</a>
+          <a href="#">Wallet</a>
+          <a href="#">Rewards</a>
+          <a href="#">Ask Us</a>
+          <a href="#">Customer Service</a>
+          <a href="signup.html">Signup/Login</a>
+        </div>
+      </div>
+    </div>
+    <div id="middlenav">
+      <div id="childmid1">
+        <img src="https://www.bbassets.com/static/v2659/custPage/build/content/img/bb_logo.png" alt="" />
+      </div>
+      <div id="childmid2">
+        <div id="mysearch">
+          <div class="search-container">
+            <form action="/search">
+              <input type="text" placeholder="Search..." />
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+        <a href="newcart.html">
+          <div id="mybasket">
+            <div id="fntbasket"><span><i class="fa-solid fa-basket-shopping"></i></span></i></div>
+
+            <div id="colbasket">
+              <p>My Basket</p>
+              <!-- <p>0 items</p> -->
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+    <div id="bottomnav">
+      <div id="childbottom1">
+        <div class="dropdown">
+          <button class="dropbtn_bottomnav">
+            SHOP BY CATEGORY <i class="fa fa-caret-down lfsd"></i>
+          </button>
+          <div class="dropdown-content_bottomnav">
+            <a href="productFruitandVegetable.html">Fruits & Vegetables</a>
+            <a href="productBakery.html">Bakery, Cakes & Dairy</a>
+            <a href="#">Foodgrains, Oil & Masala</a>
+            <a href="#">Beverages</a>
+            <a href="#">Snacks & Branded Foods</a>
+            <a href="#">Beauty & Hygiene</a>
+            <a href="#">Cleaning & Household</a>
+            <a href="#">Kitchen, Garden & Pets </a>
+            <a href="#">Eggs, Meat & Fish</a>
+            <a href="#">Gourmet & World Food</a>
+            <a href="#">Baby Care</a>
+            <a href="#">View All</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="childbottom2">
+        <div id="offers">
+          <p><span><i class="fa-solid fa-tag"></i></span> OFFERS</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Navbox End -->
+  <!-- Mobile NavBar Start -->
+  <nav>
+    <div id="navm">
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="logo">
+        <h2>BigBasket</h2>
+      </div>
+      <div class="profile">
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+    <div id="mysearch">
+      <div class="search-container1">
+        <form action="/search">
+          <input type="text" placeholder="Search..." />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="slide-menu">
+    <h4>SHOP BY CATEGORY</h4>
+    <ul>
+      <li><a href="#">Fruits & Vegetables</a></li>
+      <li><a href="#">Bakery, Cakes & Dairy</a></li>
+      <li><a href="#">Foodgrains, Oil & Masala</a></li>
+      <li><a href="#">Beverages</a></li>
+      <li><a href="#">Snacks & Branded Foods</a></li>
+      <li><a href="#">Beauty & Hygiene</a></li>
+      <li><a href="#">Cleaning & Household</a></li>
+      <li><a href="#">Kitchen, Garden & Pets </a></li>
+      <li><a href="#">Eggs, Meat & Fish</a></li>
+      <li><a href="#">Gourmet & World Food</a></li>
+      <li><a href="#">Baby Care</a></li>
+      <li><a href="#">View All</a></li>
+    </ul>
+  </div>
+  <!-- Mobile NavBar End -->
     <div id="main">
         <div class="slider">
             <img src="https://www.bigbasket.com/media/uploads/banner_images/hp_m_Perfumes&bodywash_250423_460_270423.jpg" alt="">
@@ -82,8 +212,8 @@
                 </ul>
             </div>
         </div>
-        <div class="logo">
-            <div>
+        <div class="logo2">
+            <div class="logo_child1">
                 <h4>Download Our App</h4>
                 <img src="https://www.bbassets.com/static/v2667/custPage/build/content/img/Google-App-store-icon.png" alt="">
                 <img src="https://www.bbassets.com/static/v2667/custPage/build/content/img/Apple-App-store-icon.png" alt="">

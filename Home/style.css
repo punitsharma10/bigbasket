@@ -77,13 +77,13 @@ li>a{
     list-style: none;
     color: black;
 }
-.logo{
+.logo2{
     display: flex;
     align-items: start;
     width: 67%;
     /* justify-content:; */
 }
-.logo>div+div>h4{
+.logo2>div+div>h4{
     margin: 23px 166px;
 }
 .social>img{
@@ -150,6 +150,13 @@ li>a{
   /* Styles for mobile phone screens */
   @media screen and (max-width: 480px) {
     /* Update your styles for mobile phone screens here */
+    .logo2{
+        flex-direction: column;
+    }
+    .logo_child1{
+        width: 10%;
+        margin: auto;
+    }
     .bottom{
         width: 100%;
         margin: auto;
