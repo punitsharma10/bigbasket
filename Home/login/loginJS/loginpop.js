@@ -1,4 +1,6 @@
 const loginButton = document.getElementById("loginButton");
+const loginPlaceHolder = document.getElementById("loginPlaceHolder");
+const dropdown = document.getElementById("loginDrop");
 const loginPopup = document.getElementById("loginPopup");
 const overlay = document.getElementById("overlay");
 const loginForm = document.getElementById("loginForm");
@@ -25,4 +27,19 @@ document.getElementById("submitButton").addEventListener("submit", function () {
   console.log("Clicked")
   LoginPage.style.display = "none";
   VerificationPage.style.display = "block";
+});
+console.log(loggedIn);
+loginPlaceHolder.addEventListener('mouseover', function() {
+  // Check if the user is logged in
+ 
+  if (loggedIn===null) {
+    
+    dropdown.id = 'dropdownN';
+  }
+});
+
+// Event listener for mouseout (hover out) on the button
+loginPlaceHolder.addEventListener('mouseout', function() {
+    dropdown.id = 'loginDrop';
+  
 });

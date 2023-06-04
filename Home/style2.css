@@ -53,6 +53,9 @@ body {
 
   .dropdown-content a:hover {
     background-color: #ddd;
+  } 
+  #dropdownN{
+    display: none;
   }
 
   .dropdown:hover .dropdown-content {
