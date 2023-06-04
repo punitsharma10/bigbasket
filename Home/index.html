@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Big Basket</title>
+    <link rel="stylesheet" type="text/css" href="login/loginCSS/login.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
+    
 </head>
 <body>
         <!-- Navbox start -->
@@ -22,11 +24,11 @@
       <div id="username">
         <p id="show_name"></p>
       </div>
-      <div class="dropdown">
-        <button class="dropbtn">
-          BigBasketeer<i class="fa fa-caret-down"></i>
+      <div id="loginPlaceHolder"class="dropdown">
+        <button id="loginButton" class="dropbtn">
+          Login/Sign Up <i class="fa fa-caret-down"></i>
         </button>
-        <div class="dropdown-content">
+        <div class="dropdown-content" >
           <a href="#">My Account</a>
           <a href="#">My Basket</a>
           <a href="#">My Orders</a>
@@ -34,7 +36,7 @@
           <a href="#">Rewards</a>
           <a href="#">Ask Us</a>
           <a href="#">Customer Service</a>
-          <a href="signup.html">Signup/Login</a>
+          <a href="#" id="LogOut">Log Out</a>
         </div>
       </div>
     </div>
@@ -230,6 +232,66 @@
             </div>
         </div>
     </footer>
-</body>
-</html>
+
+
+    <!-- login popupbox code -->
+    <div id="loginPopup" class="popup">
+      <div class="popup-content">
+        <!-- Login form goes here -->
+        <h2>Login/Signup Form</h2>
+        <form id="loginForm" >
+          <input type="Number" id="userID" class="bottom-border-input" placeholder="Enter Mobile Number(10-Digits)">
+          <button type="LoginEmail" id="LoginEmail">Login using Email Address</button>
+          <button type="submit" id="submitButton">Continue</button>
+          
+        </form>
+        <p>By continuing, I accept TCP-bigbasket’s <br>
+          <a href="https://www.bigbasket.com/terms-and-conditions/" >Terms and Conditions </a> and <a href=  "https://www.bigbasket.com/privacy-policy/"  >Privacy Policy</a> .</p>
+      </div>
+      
+    </div>
+    <div id="overlay" class="overlay"></div>
+  
+    <div id="VerificationPopup" class="popup">
+      <div class="popup-content">
+        <!-- Login form goes here -->
+        <h2>Verify Mobile Number</h2>
+        <p>Please check the OTP sent to <br>your mobile number</p>
+        <form id="VerForm" >
+          <label for="Enter OTP"></label>
+          <input type="Number" id="otp" class="bottom-border-input" placeholder="Enter OTP">
+          
+          <button type="submit" id="verifyOTP">Continue</button>
+          
+        </form>
+        
+      </div>
+      
+    </div>
+  
+    <div id="DetailsPopup" class="popup" >
+      <div class="popup-content">
+        <!-- Login form goes here -->
+        <h2>Verify Mobile Number</h2>
+        <p>Please Enter Your Details</p>
+        <form id="DetailsForm" >
+          <input type="text" id="UserName" class="Details-bottom-border-input" placeholder="Enter Name">
+          <input type="text" id="UserAddress" class="Details-bottom-border-input" placeholder="Enter Address" style="padding: -20px 0px;">
+          <input type="text" id="UserEmail" class="Details-bottom-border-input" placeholder="Enter Your Email">
+          
+          <button type="submit" id="Details">Continue</button>
+          
+        </form>
+        
+      </div>
+      
+    </div>
+    
+  </body>
+<script src="login/loginJS/checkUserOrCreateOne.js  "></script>
+<script src="login/loginJS/loginpop.js"></script>
+<script src="login/loginJS/switchLoginType.js"></script>
+<script src="login/loginJS/LogOut.js"></script>
 <script src="index.js"></script>
+</html>
+

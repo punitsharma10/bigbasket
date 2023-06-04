@@ -1,0 +1,10 @@
+ <div class="dropdown-content">
+          <a href="#">My Account</a>
+          <a href="#">My Basket</a>
+          <a href="#">My Orders</a>
+          <a href="#">Wallet</a>
+          <a href="#">Rewards</a>
+          <a href="#">Ask Us</a>
+          <a href="#">Customer Service</a>
+          <a href="signup.html">Signup/Login</a>
+        </div>
