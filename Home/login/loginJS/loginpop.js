@@ -8,7 +8,7 @@ loginButton.addEventListener("click", loginpop);
 var loggedIn = localStorage.getItem('loggedIn');
 
 function loginpop() {
-  {if(localStorage.getItem('loggedIn')=="false"){
+  {if(loggedIn=="false"||loggedIn==null){
     loginPopup.style.display = "block";
     overlay.style.display = "block";
   }
@@ -16,6 +16,7 @@ function loginpop() {
 }
 overlay.addEventListener("click", function () {
   loginPopup.style.display = "none";
+  VerificationPage.style.display = "none";
   overlay.style.display = "none";
 });
 
@@ -28,12 +29,10 @@ document.getElementById("submitButton").addEventListener("submit", function () {
   LoginPage.style.display = "none";
   VerificationPage.style.display = "block";
 });
-console.log(loggedIn);
 loginPlaceHolder.addEventListener('mouseover', function() {
   // Check if the user is logged in
   console.log(loggedIn);
-  if (loggedIn==null||loggedIn=="false") {
-    
+  if (loggedIn==null||loggedIn=="false"){
     dropdown.id = 'dropdownN';
   }
 });

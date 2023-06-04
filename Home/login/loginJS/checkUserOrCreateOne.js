@@ -3,14 +3,12 @@ localStorage.setItem("otp", "88888");
 function checkUserExists(userInput) {
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const existingUser = users.find((user) => user.userId == userInput);
-  
   return existingUser;
 }
 
-
-if(localStorage.getItem("UserName")!==null){
-  document.getElementById("loginButton").innerHTML=localStorage.getItem("UserName")
-  
+if (localStorage.getItem("UserName") !== null) {
+  document.getElementById("loginButton").innerHTML =
+    localStorage.getItem("UserName");
 }
 
 // Perform login or create account
@@ -20,40 +18,42 @@ function performLoginOrSignUp(userInput) {
 
   if (enteredOTP == savedOTP) {
     console.log("correct OTP!");
+    localStorage.setItem("loggedIn", "true");
     VerificationPage.style.display = "none";
     overlay.style.display = "none";
+
+    const existingUser = checkUserExists(userInput);
+    if (existingUser) {
+      localStorage.setItem("UserName", existingUser.userDetails.Name);
+      localStorage.setItem("loggedIn", "true");
+      location.reload();
+    } else {
+      const newUser = {
+        email: "",
+        number: "",
+        Name: "",
+        Address: "",
+      };
+
+      if (userInput.includes("@")) {
+        newUser.email = userInput;
+      } else {
+        newUser.number = userInput;
+      }
+
+      VerificationPage.style.display = "none";
+      const DetailsPopup = document.getElementById("DetailsPopup");
+      DetailsPopup.style.display = "block";
+      overlay.style.display = "block";
+      document
+        .querySelector("#DetailsForm")
+        .addEventListener("submit", function () {
+          storeDetails(newUser);
+        });
+    }
   } else {
     console.log("Invalid OTP. Login failed.");
     alert("Invalid OTP. Login failed.");
-  }
-
-  const existingUser = checkUserExists(userInput);
-  if (existingUser) {
-    localStorage.setItem("UserName",existingUser.userDetails.Name) 
-    
-      localStorage.setItem('loggedIn',"true");
-      location.reload();
-      
-  } else {
-    const newUser = {
-      email: "",
-      number: "",
-      Name: "",
-      Address: "",
-    };
-
-    if (userInput.includes("@")) {
-      newUser.email = userInput;
-    } else {
-      newUser.number = userInput;
-    }
-
-    VerificationPage.style.display = "none";
-    const DetailsPopup = document.getElementById("DetailsPopup");
-    DetailsPopup.style.display = "block";
-    document.querySelector("#DetailsForm").addEventListener("submit", function () {
-        storeDetails(newUser);
-      });
   }
 }
 var userInput = "";
@@ -80,8 +80,9 @@ function storeDetails(newUser) {
   newUser.Address = document.getElementById("UserAddress").value;
   newUser.Email = document.getElementById("UserEmail").value;
   DetailsPopup.style.display = "none";
-  localStorage.setItem("UserName",newUser.Name) 
-  localStorage.setItem("loggedIn","true") 
+  overlay.style.display = "none";
+  localStorage.setItem("UserName", newUser.Name);
+  localStorage.setItem("loggedIn", "true");
   location.reload();
   const User = {
     userId: userInput,
