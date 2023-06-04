@@ -678,6 +678,9 @@ var currentProduct = JSON.parse(localStorage.getItem("showProduct"));
 console.log(currentProduct);
 displayProduct(currentProduct);
 
+/*
+DISPLAYS PRODUCTS STARTS
+*/
 function displayProduct(product) {
 
     //Adding image in product page
@@ -689,7 +692,7 @@ function displayProduct(product) {
     //Adding product details in product page
     var brandName = document.createElement("p");
     brandName.setAttribute("id", "brandName")
-    brandName.textContent = product.brandName;
+    brandName.textContent = product.brandName ;
 
     var name = document.createElement("p");
     name.setAttribute("id", "name")
@@ -698,10 +701,18 @@ function displayProduct(product) {
     var originalPrice = document.createElement("p");
     originalPrice.setAttribute("id", "originalPrice")
     originalPrice.textContent = product.originalPrice;
+    
+    var originalPriceDiv = document.createElement("div");
+    originalPriceDiv.setAttribute("id", "originalPriceDiv");
+    var MRP = document.createElement("p");
+    MRP.setAttribute("id", "MRP");
+    MRP.textContent = "MRP: ₹ ";
+    originalPriceDiv.appendChild(MRP);
+    originalPriceDiv.appendChild(originalPrice);
 
     var offerPrice = document.createElement("p");
     offerPrice.setAttribute("id", "offerPrice")
-    offerPrice.textContent = "Price: " + product.offerPrice;
+    offerPrice.textContent = "Price: ₹ " + product.offerPrice;
 
     var savings = document.createElement("p");
     savings.setAttribute("id", "savings")
@@ -730,15 +741,199 @@ function displayProduct(product) {
     var addToCartButton = document.createElement("button");
     addToCartButton.setAttribute("id", "addToCartButton")
     addToCartButton.textContent = "Add to basket";
+    addToCartButton.addEventListener("click", function() {
+        addToCart(product, quantity);
+    })
+
+
 
     var deliveryInformation = document.createElement("p");
     deliveryInformation.setAttribute("id", "deliveryInformation")
     deliveryInformation.textContent = "Standard: Tomorrow Morning";
 
-    document.getElementById("productDetails").append(brandName, name, originalPrice, offerPrice, savings, taxIncluded, ratingDiv, quantity, addToCartButton, deliveryInformation);   
+    document.getElementById("productDetails").append(brandName, name, originalPriceDiv, offerPrice, savings, taxIncluded, ratingDiv, quantity, addToCartButton, deliveryInformation);   
 
     var productName = document.createElement("h2");
     productName.textContent = product.name;
     productName.setAttribute("id", "productName")
     document.getElementById("container").append(productName);   
 }
+
+/*
+DISPLAYS PRODUCTS ENDS
+*/
+
+/*
+ADD TO CART FUNCTIONALITY STARTS HERE
+*/
+var cartArray = JSON.parse(localStorage.getItem("myBasket")) || [];
+
+function addToCart(product, quantity) {
+    var quantityValue = quantity.value;
+        console.log(quantityValue)
+    cartArray.push(product);
+    localStorage.setItem("myBasket", JSON.stringify(cartArray));
+    localStorage.setItem("productQuantity", JSON.stringify(quantityValue));
+}
+
+/*
+ADD TO CART FUNCTIONALITY STARTS HERE
+*/
+
+/*
+SIMILAR PRODUCTS FUNCTIONALITY STARTS HERE
+*/
+var similarProductsArray = [];
+for(var i = 0; i < 5; i++) {
+    similarProductsArray[i] = bakeryCakesAndDairy[i];
+}
+function displayProductsCatalogue(similarProductsArray) {
+    similarProductsArray.map(function(product) {
+        
+        var tempdiv = document.createElement("div");
+        tempdiv.setAttribute("id", "tempDiv");
+
+        var image = document.createElement("img");
+        image.setAttribute("src", product.image_url);
+        image.setAttribute("alt", product.name);
+        image.setAttribute("id", "image");
+
+        var brandName = document.createElement("p");
+        brandName.textContent = product.brandName;
+        brandName.setAttribute("id", "brandName")
+
+        var name = document.createElement("h6");
+        name.textContent = product.name;
+        name.setAttribute("id", "productName");
+
+        var productDiv = document.createElement("div");
+        productDiv.setAttribute("class", "productDiv");
+        productDiv.append(image, brandName, name);
+        productDiv.addEventListener("click", function() {
+            redirectToProductPage(product);
+        })
+
+        var offerPrice = document.createElement("p");
+        offerPrice.textContent = "₹ " + product.offerPrice;
+        offerPrice.setAttribute("id", "offerPrice");
+
+        var originalPrice = document.createElement("p");
+        originalPrice.setAttribute("class", "originalPrice");
+        originalPrice.textContent = product.originalPrice;
+
+        var addToBasket = document.createElement("div");
+        addToBasket.setAttribute("id", "addToBasket");
+        
+        var MRPDiv = document.createElement("div");
+        MRPDiv.setAttribute("id", "MRPDiv");
+
+        var MRP = document.createElement("p");
+        MRP.textContent = "MRP : ₹ "
+        var priceDiv = document.createElement("div");
+        priceDiv.setAttribute("id", "priceDiv");
+        MRPDiv.append(MRP, originalPrice);
+        priceDiv.append(MRPDiv, offerPrice);
+
+        var qtyAddDiv = document.createElement("div");
+        qtyAddDiv.setAttribute("id", "qtyAddDiv")
+
+        var qtyDiv = document.createElement("div");
+        qtyDiv.setAttribute("id", "qtyDiv")
+
+        var qty = document.createElement("p");
+        qty.setAttribute("id", "qty");
+        addToBasket.append(priceDiv);
+        qty.textContent = "Qty: ";
+
+        var quantity = document.createElement("INPUT");
+        quantity.setAttribute("id", "quantity");
+        quantity.setAttribute("type", "number");
+        var quantityValue = 0;
+        
+
+        qtyDiv.appendChild(qty);
+        qtyDiv.appendChild(quantity);
+
+        var buttonDiv = document.createElement("div");
+        buttonDiv.setAttribute("id", "buttonDiv")
+
+        var button = document.createElement("button");
+        button.textContent = "ADD";
+        button.setAttribute("id", "addToCartButton");
+        button.addEventListener("click", function() {
+            addToCart(product, quantity);
+        })
+        
+        buttonDiv.appendChild(button);
+
+        qtyAddDiv.append(qtyDiv, buttonDiv)
+        qtyDiv.append(qty, quantity);
+
+        addToBasket.append(priceDiv, qtyAddDiv)
+        tempdiv.append(productDiv, addToBasket);
+
+        document.getElementById("similarProducts").append(tempdiv);
+    });
+
+}
+
+displayProductsCatalogue(similarProductsArray);
+/*
+SIMILAR PRODUCTS FUNCTIONALITY ENDS HERE
+*/
+
+/*
+ADD TO CART FUNCTIONALITY STARTS HERE
+*/
+
+var cartArray = []
+// JSON.parse(localStorage.getItem("myBasket")) || [];
+function addToCart(product, quantity) {
+    quantityValue = quantity.value;
+        console.log(quantityValue)
+    cartArray.push(product);
+    localStorage.setItem("myBasket", JSON.stringify(cartArray));
+}
+
+/*
+ADD TO CART FUNCTIONALITY ENDS HERE
+*/
+
+/*
+Redirection to new Page starts
+*/
+
+function redirectToProductPage(product) {
+    localStorage.setItem("showProduct", JSON.stringify(product));
+    window.open("productTemplate2.html");
+}
+
+/*
+Redirection to new Page ends
+*/
+
+/*
+RATING ON PRODUCTS PAGE FUNCTIONALITY STARTS HERE
+*/
+
+var ratigsDivOnProductPage = document.createElement("div");
+var imageDiv = document.createElement("div");
+
+
+
+var textDiv = document.createElement("div");
+textDiv.setAttribute("id", "textDiv");
+
+var headingOfReviews = document.createElement("p");
+headingOfReviews.textContent = "Want to rate this product?";
+
+var bodyOfReviews = document.createElement("p");
+bodyOfReviews.textContent = "You can rate and review this product only after purchasing from bigbasket";
+
+textDiv.append(headingOfReviews, bodyOfReviews);
+ratigsDivOnProductPage.append(textDiv);
+document.getElementById("ratingsOnProductPage").append(ratigsDivOnProductPage);
+
+/*
+RATING ON PRODUCTS PAGE FUNCTIONALITY ENDS HERE
+*/

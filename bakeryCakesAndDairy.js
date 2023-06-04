@@ -689,12 +689,12 @@
 
 var productCount = document.createElement("h3");
 productCount.textContent = "Bakery, Cakes & Dairy(" + bakeryCakesAndDairy.length + ")";
-// var categoryName = document.creat
+
 document.getElementById("categoryInfo").append(productCount);
 
-displayProductsCatalogue();
+displayProductsCatalogue(bakeryCakesAndDairy);
 
-function displayProductsCatalogue() {
+function displayProductsCatalogue(bakeryCakesAndDairy) {
     bakeryCakesAndDairy.map(function(product) {
         
         var div = document.createElement("div");
@@ -740,11 +740,6 @@ function displayProductsCatalogue() {
         originalPrice.setAttribute("class", "originalPrice");
         originalPrice.textContent = "₹ " + product.originalPrice;
 
-        
-
-        
-
-        
         var addToBasket = document.createElement("div");
         addToBasket.setAttribute("id", "addToBasket");
         
@@ -757,8 +752,6 @@ function displayProductsCatalogue() {
         priceDiv.setAttribute("id", "priceDiv");
         MRPDiv.append(MRP, originalPrice);
         priceDiv.append(MRPDiv, offerPrice);
-
-        
 
         var qtyAddDiv = document.createElement("div");
         qtyAddDiv.setAttribute("id", "qtyAddDiv")
@@ -774,6 +767,8 @@ function displayProductsCatalogue() {
         var quantity = document.createElement("INPUT");
         quantity.setAttribute("id", "quantity");
         quantity.setAttribute("type", "number");
+        var quantityValue = 0;
+        
 
         qtyDiv.appendChild(qty);
         qtyDiv.appendChild(quantity);
@@ -785,9 +780,9 @@ function displayProductsCatalogue() {
         button.textContent = "ADD";
         button.setAttribute("id", "button");
         button.addEventListener("click", function() {
-            addToCart(product);
+            addToCart(product, quantity);
         })
-        //
+        
         buttonDiv.appendChild(button);
 
         qtyAddDiv.append(qtyDiv, buttonDiv)
@@ -800,17 +795,226 @@ function displayProductsCatalogue() {
     });
 }
 
-
+/*
+Redirection to new Page starts
+*/
 
 function redirectToProductPage(product) {
     localStorage.setItem("showProduct", JSON.stringify(product));
     window.open("productTemplate2.html");
 }
 
+/*
+Redirection to new Page ends
+*/
+
+/*
+ADD TO CART FUNCTIONALITY STARTS HERE
+*/
+
 var cartArray = JSON.parse(localStorage.getItem("myBasket")) || [];
-function addToCart(product) {
+function addToCart(product, quantity) {
+    var quantityValue = quantity.value;
+        console.log(quantityValue)
     cartArray.push(product);
     localStorage.setItem("myBasket", JSON.stringify(cartArray));
+    localStorage.setItem("productQuantity", JSON.stringify(quantityValue));
 }
 
-console.log(cartArray);
+/*
+ADD TO CART FUNCTIONALITY ENDS HERE
+*/
+
+/*
+
+FILTER FUNCTIONALITY STARTS HERE
+
+*/
+var productsAfterFiltering = [];
+
+function priceFilter0To20() {
+    var filterBy = document.getElementById("Lessthan20").value;
+    
+    if(filterBy === "lessThan₹20") {
+        var filteredProductsbyPrice0To20 = bakeryCakesAndDairy.filter(function (ele) {
+            return ele.offerPrice <= 20;
+        });
+
+        document.getElementById("mainContent").textContent = "";
+        displayProductsCatalogue(filteredProductsbyPrice0To20);
+    }
+}
+
+
+function priceFilter21To50() {
+    var filterBy = document.getElementById("₹21To₹50").value;
+    
+    if(filterBy === "₹21To₹50") {
+        var filteredProductsbyPrice21To50 = bakeryCakesAndDairy.filter(function (ele) {
+            return ele.offerPrice > 20 && ele.offerPrice <= 50;
+        });
+
+        document.getElementById("mainContent").textContent = "";
+        displayProductsCatalogue(filteredProductsbyPrice21To50);
+    }
+}
+
+function priceFilter51To100() {
+    var filterBy = document.getElementById("₹51To₹100").value;
+    
+    if(filterBy === "₹51To₹100") {
+        var filteredProductsbyPrice51To100 = bakeryCakesAndDairy.filter(function (ele) {
+            return ele.offerPrice > 50 && ele.offerPrice <= 100;
+        });
+
+        document.getElementById("mainContent").textContent = "";
+        displayProductsCatalogue(filteredProductsbyPrice51To100);
+    }
+}
+
+function priceFilter101To200() {
+    var filterBy = document.getElementById("₹101To₹200").value;
+    
+    if(filterBy === "₹101To₹200") {
+        var filteredProductsbyPrice101To200 = bakeryCakesAndDairy.filter(function (ele) {
+            return ele.offerPrice > 100 && ele.offerPrice <= 200;
+        });
+
+        document.getElementById("mainContent").textContent = "";
+        displayProductsCatalogue(filteredProductsbyPrice101To200);
+    }
+}
+
+function priceFilter201To500() {
+    var filterBy = document.getElementById("₹201To₹500").value;
+    
+    if(filterBy === "₹201To₹500") {
+        var filteredProductsbyPrice201To500 = bakeryCakesAndDairy.filter(function (ele) {
+            return ele.offerPrice > 200 && ele.offerPrice <= 500;
+        });
+
+        document.getElementById("mainContent").textContent = "";
+        displayProductsCatalogue(filteredProductsbyPrice201To500);
+    }
+}
+
+function priceFilterAbove500() {
+    var filterBy = document.getElementById("moreThan₹501").value;
+    
+    if(filterBy === "moreThan₹501") {
+        var filteredProductsbyPricemoreThan501 = bakeryCakesAndDairy.filter(function (ele) {
+            return ele.offerPrice > 500;
+        });
+
+        document.getElementById("mainContent").textContent = "";
+        displayProductsCatalogue(filteredProductsbyPricemoreThan501);
+    }
+}
+
+
+
+/*
+
+FILTER FUNCTIONALITY ENDS HERE
+
+*/
+
+
+/*
+
+SORTING FUNCTIONALITY STARTS HERE
+
+*/
+
+document.getElementById("sortFunctionality").addEventListener("change", sortProducts())
+function sortProducts() {
+    var productArray = bakeryCakesAndDairy;
+    var sortingType = document.getElementById("sortFunctionality").value;
+
+    if(sortingType === "popularity") {
+        document.getElementById("mainContent").textContent="";
+        displayProductsCatalogue(bakeryCakesAndDairy);
+    }
+    else if(sortingType === "lToH") {
+        document.getElementById("mainContent").textContent="";
+        var lowToHighPrice = [];
+        bakeryCakesAndDairy.map(function(ele) {
+            lowToHighPrice.push(ele);
+        });
+        lowToHighPrice.sort(function(a, b) {
+            if(a.offerPrice > b.offerPrice) {
+                return 1;
+            }
+            else if(a.offerPrice < b.offerPrice) {
+                return -1;
+            }
+            else {
+                return 0;
+            }
+        });
+        displayProductsCatalogue(lowToHighPrice);
+    }
+    else if(sortingType === "hToL") {
+        document.getElementById("mainContent").textContent="";
+        var highToLowPrice = [];
+        bakeryCakesAndDairy.map(function(ele) {
+            highToLowPrice.push(ele);
+        });
+        highToLowPrice.sort(function(a, b) {
+            if(a.offerPrice > b.offerPrice) {
+                return -1;
+            }
+            else if(a.offerPrice < b.offerPrice) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        });
+        displayProductsCatalogue(highToLowPrice);
+    }
+    else if(sortingType === "aToZ") {
+        document.getElementById("mainContent").textContent="";
+        var aToZ = [];
+        bakeryCakesAndDairy.map(function(ele) {
+            aToZ.push(ele);
+        });
+        aToZ.sort(function(a, b) {
+            if(a.name > b.name) {
+                return 1;
+            }
+            else if(a.name < b.name) {
+                return -1;
+            }
+            else {
+                return 0;
+            }
+        });
+        displayProductsCatalogue(aToZ);
+    }
+    else if(sortingType === "zToA") {
+        document.getElementById("mainContent").textContent="";
+        var zToA = [];
+        bakeryCakesAndDairy.map(function(ele) {
+            zToA.push(ele);
+        });
+        zToA.sort(function(a, b) {
+            if(a.name > b.name) {
+                return -1;
+            }
+            else if(a.name < b.name) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        });
+        displayProductsCatalogue(zToA);
+    }
+}
+
+/*
+
+SORTING FUNCTIONALITY STARTS HERE
+
+*/
