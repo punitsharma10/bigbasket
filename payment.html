@@ -181,10 +181,10 @@
 </body>
 </html>
 <script>
-    var cartprice = localStorage.getItem("cartprice");
+    var TotalCartValue = localStorage.getItem("TotalCartValue");
     var showprice = document.querySelectorAll(".showprice");
     for (var i = 0; i < showprice.length; i++) {
-        showprice[i].textContent = "Rs. " + cartprice;
+        showprice[i].textContent = "Rs. " + TotalCartValue;
     }
 
     console.log(showprice)
@@ -242,8 +242,8 @@
 
         if (promocodeinput === "masai10") 
         {
-            cartprice = cartprice * 0.9;
+            TotalCartValue = TotalCartValue * 0.9;
         }
-        document.getElementById("showapplypromoprice").textContent = "Rs. " + cartprice.toFixed(0);
+        document.getElementById("showapplypromoprice").textContent = "Rs. " + TotalCartValue.toFixed(0);
     }
 </script>
