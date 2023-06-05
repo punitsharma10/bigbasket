@@ -10,10 +10,10 @@ var cartList = JSON.parse(localStorage.getItem("myBasket")) || [];
     }
     else {
         displaycartlist(cartList);
-        calcart(cartList);
-        countitems(cartList);
+        // calcart(cartList);
+        // countitems(cartList);
     }
-    
+    var totalSavings = [];
     var quantity = JSON.parse(localStorage.getItem("productQuantity"));
     function displaycartlist(cartList) {
         cartList.map(function(product) {
@@ -25,21 +25,25 @@ var cartList = JSON.parse(localStorage.getItem("myBasket")) || [];
             td1.textContent = product.name;
 
             var td2 = document.createElement("td");
-            td2.textContent = product.offerPrice;
+            td2.textContent = "₹ " + product.offerPrice;
 
             var td3 = document.createElement("td");
             td3.textContent = JSON.parse(localStorage.getItem("productQuantity"));
 
             var td4 = document.createElement("td");
-            td4.textContent = product.offerPrice * td3.textContent;
+            td4.textContent = "₹ " + product.offerPrice * td3.textContent;
 
             var td5 = document.createElement("td");
-            td5.textContent = product.originalPrice - product.offerPrice;
+            var value = product.originalPrice - product.offerPrice;
+            td5.textContent = "₹ " + value.toFixed(2);
+            
+            // totalSavings.push(value)
 
+            
             tr.append(td1, td2, td3, td4, td5);
             document.getElementById("tbody").append(tr);
         })
-
+        
         var editItems = document.createElement("div");
         editItems.setAttribute("id", "editItems");
 
@@ -48,7 +52,15 @@ var cartList = JSON.parse(localStorage.getItem("myBasket")) || [];
 
         var emptyBasketButton = document.createElement("button");
         emptyBasketButton.textContent = "EMPTY BASKET";
-        // emptyBasketButton.addEventListener("click", function() {})
+        emptyBasketButton.addEventListener("click", function() {
+            localStorage.removeItem("myBasket");
+            document.getElementById("basketContainer").textContent = "";
+            var noItems = document.createElement("h1");
+            noItems.textContent = "There are no items in your basket."
+            var continueShoppingButton = document.createElement("button");
+            continueShoppingButton.textContent = "CONTINUE SHOPPING";
+            document.getElementById("basketContainer").append(noItems, continueShoppingButton);
+        })
         emptyBasketButton.setAttribute("id", "emptyBasketButton");
 
         var continueShopping = document.createElement("button");
@@ -67,7 +79,10 @@ var cartList = JSON.parse(localStorage.getItem("myBasket")) || [];
 
         var subTotal = document.createElement("p");
         subTotal.setAttribute("id", "subTotal");
-        subTotal.textContent = "Subtotal : " + "100";
+        var subTotalValue = findSubTotal(cartList);
+        localStorage.setItem("TotalCartValue", subTotalValue.toFixed(2));
+        console.log(subTotalValue);
+        subTotal.textContent = "Subtotal : ₹ " + subTotalValue.toFixed(2);
         
         var deliveryCharges = document.createElement("p");
         deliveryCharges.setAttribute("id", "deliveryCharges");
@@ -77,7 +92,7 @@ var cartList = JSON.parse(localStorage.getItem("myBasket")) || [];
 
         var total = document.createElement("p");
         total.setAttribute("id", "total");
-        total.textContent = "TOTAL : " + " 100";
+        total.textContent = "TOTAL : ₹ " + subTotalValue.toFixed(2);
 
         
 
@@ -86,6 +101,12 @@ var cartList = JSON.parse(localStorage.getItem("myBasket")) || [];
         var youSaved = document.createElement("p");
         youSaved.setAttribute("id", "youSaved");
         youSaved.textContent = "You Saved!";
+        var saveValue = document.createElement("p");
+        
+        var dummy =  findSavings(cartList);
+        localStorage.setItem("TotalSavings", dummy.toFixed(2));
+        saveValue.textContent = "₹ " + dummy.toFixed(2);
+        youSaved.appendChild(saveValue);
 
         var savingsDiv = document.createElement("div");
         savingsDiv.setAttribute("id", "savingsDiv");
@@ -114,21 +135,19 @@ var cartList = JSON.parse(localStorage.getItem("myBasket")) || [];
         document.getElementById("basketContainer").append(editItems);
     }
 
-    
+    function findSubTotal(cartList) {
+        var ans = cartList.reduce(function(accu, curr) {
+            return accu + curr.offerPrice;
+        }, 0);
+        return ans;
+    }
 
-    // function calcart(cartList) {
-    //     var sum = cartList.reduce(function (acc, currEle) {
-    //         return acc + (currEle.offerPrice);
-    //     }, 0);
-
-    //     var showtotal = document.createElement("p");
-    //     showtotal.textContent = "Rs " + sum;
-    //     var deliveryCharges = document.createElement("p");
-    //     deliveryCharges.textContent = "**";
-    //     document.getElementById("editItems").append(showtotal, deliveryCharges);
-    //     console.log(sum)
-    //     localStorage.setItem("totalcartprice", sum);
-    // }
+    function findSavings(cartList) {
+        var ans = cartList.reduce(function(accu, curr) {
+            return accu + curr.originalPrice - curr.offerPrice;
+        }, 0);
+        return ans;
+    }
 
     function countitems(cartList) {
         document.getElementById("countitems").textContent = cartList.length;

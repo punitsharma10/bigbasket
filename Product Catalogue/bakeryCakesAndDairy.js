@@ -767,6 +767,7 @@ function displayProductsCatalogue(bakeryCakesAndDairy) {
         var quantity = document.createElement("INPUT");
         quantity.setAttribute("id", "quantity");
         quantity.setAttribute("type", "number");
+        quantity.setAttribute("min", "1");
         var quantityValue = 0;
         
 
@@ -801,7 +802,7 @@ Redirection to new Page starts
 
 function redirectToProductPage(product) {
     localStorage.setItem("showProduct", JSON.stringify(product));
-    window.open("productTemplate2.html");
+    window.open("C:/Users/DELL/Desktop/Masai School Web Dev/bigbasket/Product Template/productTemplate.html");
 }
 
 /*
@@ -815,6 +816,7 @@ ADD TO CART FUNCTIONALITY STARTS HERE
 var cartArray = JSON.parse(localStorage.getItem("myBasket")) || [];
 function addToCart(product, quantity) {
     var quantityValue = quantity.value;
+    if(quantityValue == "") quantityValue = 1;
         console.log(quantityValue)
     cartArray.push(product);
     localStorage.setItem("myBasket", JSON.stringify(cartArray));
