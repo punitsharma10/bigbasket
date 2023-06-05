@@ -737,6 +737,7 @@ function displayProduct(product) {
     var quantity = document.createElement("INPUT");
     quantity.setAttribute("id", "quantity");
     quantity.setAttribute("type", "number");
+    quantity.setAttribute("min", "1");
 
     var addToCartButton = document.createElement("button");
     addToCartButton.setAttribute("id", "addToCartButton")
@@ -770,6 +771,7 @@ var cartArray = JSON.parse(localStorage.getItem("myBasket")) || [];
 
 function addToCart(product, quantity) {
     var quantityValue = quantity.value;
+    if(quantityValue == "") quantityValue = 1;
         console.log(quantityValue)
     cartArray.push(product);
     localStorage.setItem("myBasket", JSON.stringify(cartArray));
