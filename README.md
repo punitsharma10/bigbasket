@@ -5,8 +5,11 @@ This is a clone of the Big Basket e-commerce website, built using HTML,CSS and J
 Collaborators
 
 Punit Kumar Sharma
+
 Vamsi Shetty
+
 Akash Desai
+
 Saif Khan
 
 Tech Stack
