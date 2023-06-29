@@ -15,10 +15,19 @@ Saif Khan
 Tech Stack
 
 HTML
+
 CSS
+
+
 Javascript - (DOM Manipulation, Local Storage)
+
+
 Bootstrap
+
+
 Git
+
+
 github
 
 Features
