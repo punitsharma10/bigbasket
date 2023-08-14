@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <Style>
+        body {
+            margin: 0;
+        }
+
+        /* cart css start */
+
+        #parent {
+            width: 70%;
+            margin: 40px auto;
+        }
+
+        #checkbox {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background-color: black;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        #checkbox>p {
+            color: white;
+            margin: 0;
+        }
+
+        #checkbox>a>button {
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 5px 20px;
+        }
+
+        #checkbox>a>button:hover {
+            background-color: #a5cd39;
+        }
+
+        #im_mini {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 40%;
+        }
+
+        #im_mini>img {
+            width: 40%;
+            margin-right: 50px;
+        }
+
+        #im_mini>div>div {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+        #im_mini>div>div>p:nth-child(2) {
+            font-size: 12px;
+            text-decoration: line-through;
+            margin-top: 4px;
+        }
+
+        tbody>tr>td:nth-child(2) {
+            margin-right: 100px;
+        }
+
+        #qty {
+            width: 20%;
+        }
+
+        #subtt {
+            width: 10%;
+        }
+
+        #show_name {
+
+            font-size: 15px;
+        }
+
+        #username>p {
+            margin: 0 -15px 0 0;
+        }
+    </Style>
+</head>
+
+<body>
+
+    <!-- cart start -->
+
+    <div id="parent">
+        <div>
+            <h3>Your Basket</h3>
+            <div id="checkbox">
+                <p>Subtotal : <span id="showtotal">0</span></p>
+                <a href="paymentpage.html"><button>Checkout</button></a>
+            </div>
+            <div id="tablediv">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Items - <span id="countitems">0</span></th>
+                            <th>Quantity</th>
+                            <th>Sub-Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- cart End -->
+
+
+</body>
+
+</html>
